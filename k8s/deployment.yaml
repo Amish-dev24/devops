@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: web
-        image: ghcr.io/faisalumerr/devsecops-workshop:latest
+        image: ghcr.io/faisalumerr/devsecops-app:latest
         imagePullPolicy: Always
         ports:
         - containerPort: 3000
