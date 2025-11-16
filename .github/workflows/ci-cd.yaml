@@ -65,8 +65,10 @@ jobs:
       run: |
         export KUBECONFIG=$PWD/kubeconfig
         echo "Testing API server connectivity..."
-        kubectl version --short
+        kubectl version
+        kubectl cluster-info
         kubectl get nodes
+
 
     # ------------------
     # DEPLOY TO MINIKUBE (VIA NGROK TUNNEL)
