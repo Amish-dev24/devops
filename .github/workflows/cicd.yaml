@@ -44,7 +44,6 @@ jobs:
         severity: CRITICAL,HIGH
         ignore-unfixed: true
         exit-code: "0"
-        ignore-unfixed: true
         args: >
           --skip-db-update
           --skip-jave-db-update
