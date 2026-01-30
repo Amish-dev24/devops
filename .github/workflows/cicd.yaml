@@ -24,7 +24,6 @@ jobs:
     - name: Print Version
       run: echo "VERSION=${{ steps.version.outputs.version }}"
 
-    # 🔑 FIX: force lowercase for Docker/GHCR
     - name: Set lowercase owner
       run: |
         echo "OWNER=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
@@ -46,7 +45,7 @@ jobs:
         exit-code: "0"
         args: >
           --skip-db-update
-          --skip-jave-db-update
+          --skip-java-db-update
 
     - name: Login to GHCR
       run: |
@@ -58,6 +57,12 @@ jobs:
         VERSION=${{ steps.version.outputs.version }}
         docker push ghcr.io/$OWNER/devops:$VERSION
         docker push ghcr.io/$OWNER/devops:latest
+
+    # ✅ START KUBERNETES FIRST
+    - name: Start Minikube
+      run: |
+        minikube status || minikube start --driver=docker
+        kubectl config use-context minikube
 
     - name: Create GHCR Secret in Kubernetes
       run: |
@@ -79,4 +84,3 @@ jobs:
 
     - name: Wait for Rollout
       run: kubectl rollout status deployment/devsecops-app
-
