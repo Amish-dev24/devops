@@ -58,7 +58,7 @@ jobs:
         docker push ghcr.io/$OWNER/devops:$VERSION
         docker push ghcr.io/$OWNER/devops:latest
 
-    # ✅ START KUBERNETES FIRST
+    # ✅ START KUBERNETES
     - name: Start Minikube
       run: |
         minikube status || minikube start --driver=docker
