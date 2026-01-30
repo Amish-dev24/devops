@@ -44,8 +44,10 @@ jobs:
         severity: CRITICAL,HIGH
         ignore-unfixed: true
         exit-code: "0"
-        skip-db-update: true
-        skip-jave-db-update: true
+        ignore-unfixed: ture
+        args: >
+          --skip-db-update
+          --skip-jave-db-update
 
     - name: Login to GHCR
       run: |
