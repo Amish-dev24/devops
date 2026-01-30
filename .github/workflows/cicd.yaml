@@ -45,6 +45,7 @@ jobs:
         ignore-unfixed: true
         exit-code: "0"
         skip-db-update: true
+        skip-jave-db-update: true
 
     - name: Login to GHCR
       run: |
